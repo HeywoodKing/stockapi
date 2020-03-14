@@ -1,0 +1,13 @@
+*.py[cod]
+*.egg-info
+*.so
+*.eg
+.idea/*
+*.xml
+*.idea
+*.log
+*.pyc
+
+stockapi/*.log
+stockapi/__pycache__
+stockapi/__pycache__/*.pyc
