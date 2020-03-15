@@ -20,6 +20,8 @@ def hello(c, name):
     :return:
     """
     c.run(f"echo {name} 加油！")
+    # responses = {r"Are you ready? \[y/n\] ": "y\n"}
+    # c.run(f"echo {name} 加油！", responses=responses)
 
 
 @task()
