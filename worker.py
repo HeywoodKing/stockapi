@@ -15,6 +15,7 @@ import time
 from config import *
 from threading import Thread
 from multiprocessing import Process
+
 # from concurrent.futures.thread import ThreadPoolExecutor
 # from concurrent.futures.process import ProcessPoolExecutor
 
@@ -42,23 +43,28 @@ def start_api(item):
         # b = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         # b = os.system(cmd)
 
-        cmd = r"{}\{}".format(pwd, item['name'])
+        cmd = r"{}/{}".format(pwd, item['name'])
+        # cmd = r"{}".format(pwd)
         os.chdir(cmd)
+        print('当前路径：{}'.format(cmd))
 
         print('\r\n')
         print('+' * 100)
         print('{}>>{}:{} api 服务正在启动...'.format(item['name'], item['host'], item['port']))
         print('+' * 100)
 
-        # uvicorn
-        # args = """{} {}:{} --host {} --port {} --limit-concurrency 100 --loop asyncio
-        # --timeout-keep-alive 5 """.format(item['wsgi'], item['module'], item['app'], item['host'], item['port'])
-
-        # daphne
-        args = "{} -b {} -p {} {}:{}".format(item['wsgi'], item['host'], item['port'], item['module'], item['app'])
-
-        # gunicorn
-        # args = "{} --workers=4 --bind={}:{} {}:{}".format(item['wsgi'], item['host'], item['port'], item['module'], item['app'])
+        if item['wsgi'] == 'uvicorn':
+            # uvicorn
+            args = """{} {}:{} --host {} --port {} --limit-concurrency 100 --loop asyncio --timeout-keep-alive 5 
+            """.format(item['wsgi'], item['module'], item['app'], item['host'], item['port'])
+        elif item['wsgi'] == 'gunicorn':
+            # gunicorn
+            args = """{} --workers=4 --bind={}:{} {}:{}
+            """.format(item['wsgi'], item['host'], item['port'], item['module'], item['app'])
+        else:
+            # daphne
+            args = """{} -b {} -p {} {}:{}
+            """.format(item['wsgi'], item['host'], item['port'], item['module'], item['app'])
 
         res = os.system(command=args)
 
@@ -75,14 +81,15 @@ def start_api(item):
 
 
 def main():
+    # 一
     # print('当前路径 {}'.format(pwd))
     # sub = subprocess.Popen("pipenv shell", shell=True, stdout=subprocess.PIPE)
     # sub.wait()
     # print(sub.read())
-
     # os.system('pipenv shell')
     # os.system('dir')
 
+    # 二
     # t1 = Thread(target=start_factory)
     # t1.start()
     # t2 = Thread(target=start_words)
@@ -93,6 +100,7 @@ def main():
     # p2 = Process(target=start_words)
     # p2.start()
 
+    # 三
     for item in API_LIST:
         if IS_THREAD_RUN_METHOD:
             t = Thread(target=start_api, args=(item,))

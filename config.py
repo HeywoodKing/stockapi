@@ -1,4 +1,4 @@
-HOST = '192.168.1.79'
+HOST = '127.0.0.1'
 # PORT = '9090'
 # LOG_LEVEL = 'info'
 # UDS = None
@@ -34,9 +34,9 @@ IS_THREAD_RUN_METHOD = True
 # 底层通用接口配置文件
 API_LIST = [
     # {
-    #     "name": "factory",              # api 名称
+    #     "name": "stockapi",             # api 名称
     #     "host": HOST,                   # host
-    #     "port": 8091,                   # port
+    #     "port": 38080,                  # port
     #     "wsgi": "uvicorn",              # wsgi
     #     "module": "run",                # 启动模块名（即应用实例所在的文件名，eg:run.py）
     #     "app": "app"                    # api 实例名（即应用实例所起的变量名）
@@ -44,9 +44,9 @@ API_LIST = [
 
     # =============================================================================
     # {
-    #     "name": "factory",              # api 名称
+    #     "name": "stockapi",             # api 名称
     #     "host": HOST,                   # host
-    #     "port": 8091,                   # port
+    #     "port": 38080,                  # port
     #     "wsgi": "gunicorn",             # wsgi
     #     "module": "run",                # 启动模块名（即应用实例所在的文件名，eg:run.py）
     #     "app": "app"                    # api 实例名（即应用实例所起的变量名）

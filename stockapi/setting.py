@@ -13,9 +13,9 @@ import platform
 
 STOCK_SINA_URL = 'http://hq.sinajs.cn/list='
 
-LOG_PATH = '/data/logs/icmofang/moli_restapi/electron/'
+LOG_PATH = os.path.dirname(os.getcwd()) + '/logs/'
 if platform.system().lower() == 'windows':
-    LOG_PATH = 'E:/log/user/'
+    LOG_PATH = 'E:/logs/'
     if not os.path.exists(LOG_PATH):
         os.mkdir(LOG_PATH)
 elif platform.system().lower() == 'linux':

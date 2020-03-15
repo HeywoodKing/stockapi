@@ -8,7 +8,7 @@
 @project        : stockapi
 @description    : 描述
 """
-from stockapi.stockinfo import main
+from stockinfo import main
 
 app = main()
 

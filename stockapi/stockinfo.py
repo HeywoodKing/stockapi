@@ -12,8 +12,8 @@ import re
 import sys
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from .setting import *
-from .models import *
+from setting import *
+from models import *
 from fastapi import FastAPI, Query, Body
 import aiohttp
 

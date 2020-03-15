@@ -1,8 +1,13 @@
 [tool.poetry]
 name = "stockapi"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
-authors = ["flack.chen <flack.chen@infinigo.cn>"]
+authors = ["hywell <opencoding@hotmai.com>"]
+
+[[tool.poetry.source]]
+name = 'aliyun'
+#url = 'https://pypi.douban.com/simple'
+url = 'https://mirrors.aliyun.com/pypi/simple'
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -11,6 +16,7 @@ aiohttp = "^3.6.2"
 cchardet = "^2.1.5"
 aiodns = "^2.0.0"
 daphne = "^2.4.1"
+pydantic = "^1.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
