@@ -23,5 +23,5 @@ poetry install
 ```
 python worker.py
 或
-inv start
+inv deploy
 ```
