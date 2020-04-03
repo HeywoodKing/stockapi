@@ -25,6 +25,7 @@ class StocksModel(EntityModel):
 
 
 class StockInfoModel(BaseModel):
+    stock_no: str = Field(default='', title='股票代码')
     name: str = Field(default='', title='股票名称')
     today_start: float = Field(default=0.00, title='今日开盘价')
     yesterday_end: float = Field(default=0.00, title='昨日收盘价')

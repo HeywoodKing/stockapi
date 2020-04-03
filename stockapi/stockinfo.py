@@ -26,7 +26,9 @@ logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)-8s: %(message)s')
 
 # 每天生成一个日志文件，保留最近30天的日志文件
-log_file_name = __name__.split('.')[1]
+# print(__name__)
+# log_file_name = __name__.split('.')[1]
+log_file_name = __name__
 timeRotateHandler = TimedRotatingFileHandler(filename=LOG_PATH.rstrip('/').rstrip('\\') + "/{}_".format(log_file_name),
                                              when="D", interval=1, backupCount=30, encoding='utf-8')
 timeRotateHandler.setFormatter(formatter)
@@ -54,6 +56,7 @@ async def post_stockinfo_search(param: StocksModel = Body(..., example={
         "sz002885",
         "sh603863",
         "sz300675",
+        "sz000935",
     ]
 })):
     stock_list = []
@@ -66,12 +69,14 @@ async def post_stockinfo_search(param: StocksModel = Body(..., example={
             # print(res, type(res))
             res_list = str(res).split(';')
             # print(len(res_list))
+            i = 0
             for item in res_list[:-1]:
                 # print(item)
                 stock = item.split('=')[1]
                 # print('股票：', stock)
                 stock_details = stock.strip('"').split(',')
                 stock_info = StockInfoModel()
+                stock_info.stock_no =param.stocks[i]
                 stock_info.name = stock_details[0]
                 stock_info.today_start = stock_details[1]
                 stock_info.yesterday_end = stock_details[2]
@@ -106,6 +111,7 @@ async def post_stockinfo_search(param: StocksModel = Body(..., example={
                 stock_info.trade_time = stock_details[31]
 
                 stock_list.append(stock_info)
+                i += 1
 
             return stock_list
 

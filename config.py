@@ -1,4 +1,4 @@
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 # PORT = '9090'
 # LOG_LEVEL = 'info'
 # UDS = None
@@ -56,7 +56,7 @@ API_LIST = [
     {
         "name": "stockapi",             # api 名称
         "host": HOST,                   # host
-        "port": 38080,                  # port
+        "port": 9003,                   # port
         "wsgi": "daphne",               # wsgi
         "module": "run",                # 启动模块名（即应用实例所在的文件名，eg:run.py）
         "app": "app"                    # api 实例名（即应用实例所起的变量名）
